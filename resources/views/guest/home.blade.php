@@ -62,6 +62,8 @@
                 margin-bottom: 30px;
             }
         </style>
+
+        <link rel="stylesheet" href="{{asset('css/app.css')}}">
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -81,7 +83,8 @@
                 </div>
             @endif
             
-            <div id="root">ciaone</div>
+            <div id="root"></div>
         </div>
+        <script src="{{asset('js/front.js')}}"></script>
     </body>
 </html>
