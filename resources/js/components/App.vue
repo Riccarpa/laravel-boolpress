@@ -1,27 +1,21 @@
 <template>
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header text-center">
-                        <Header :title="title" />
-                    </div>
-
-                    <div class="card-body text-center">
-                        my blog WIP
-                    </div>
-                </div>
-            </div>
-        </div>
+        <Header :title="title" />
+        <main>
+            <PostList />
+        </main>
     </div>
 </template>
 
 <script>
 import Header from "./Header.vue";
+import PostList from "./PostList.vue";
+
 export default {
     name: "App",
     components: {
-        Header
+        Header,
+        PostList
     },
     data() {
         return {

@@ -1,5 +1,7 @@
 <template>
-    <h1>Benvenuto su {{ title }}</h1>
+    <header class="text-center mt-2">
+        <h1>Benvenuto su {{ title }}</h1>
+    </header>
 </template>
 
 <script>

@@ -23,26 +23,23 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <div class="d-flex align-items-center h-100">
-                    @if(request()->routeIs('admin.posts.index'))
+
+                {{-- lef-side --}}
+                @if(request()->routeIs('admin.posts.index'))
+
+                    <div class="d-flex align-items-center h-100">
                         <a class="btn btn-outline-info" href="{{route('admin.home')}}">Admin account</a>
-                    @endif
-                </div>
-                {{-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button> --}}
+                    </div>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    {{-- <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <li>
-                          
-                        </li>
-                    </ul> --}}
+                 @endif
 
-                    <!-- Right Side Of Navbar -->
-                    @if(request()->routeIs('admin.home'))
+                
+                <!-- Right Side Of Navbar -->
+                @if(request()->routeIs('admin.home'))
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
+
                             <!-- Authentication Links -->
                             @guest
                                 <li class="nav-item">
@@ -73,8 +70,9 @@
                                 </li>
                             @endguest
                         </ul>
-                    @endif
-                </div>
+                    </div>
+                    
+                 @endif
             </div>
         </nav>
 
