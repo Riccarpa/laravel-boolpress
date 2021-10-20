@@ -26,6 +26,7 @@
                   <td>{{$post->created_at}}</td>
                   <td class="d-flex ">
                     <a class="btn btn-primary mr-2" href="{{route('admin.posts.show',$post->id)}}">Vai</a>
+                    <a class="btn btn-warning mr-2" href="{{route('admin.posts.edit',$post->id)}}">Modifica</a>
                     <form method="POST" action="{{route('admin.posts.destroy',$post->id)}}">
                       @method('DELETE')
                       @csrf

@@ -13,15 +13,15 @@
     <form>
         <div class="form-group">
           <label for="title">Title</label>
-          <input type="text" class="form-control" id="title" name="title">
+          <input type="text" class="form-control" id="title" name="title" value="{{$post->title}}">
         </div>
         <div class="form-group">
             <label for="content">Testo del post</label>
-            <textarea name="content" class="form-control" id="content" cols="30" rows="10"></textarea>
+            <textarea name="content" class="form-control" id="content" cols="30" rows="10">{{$post->content}}</textarea>
         </div>
         <div class="form-group">
             <label for="image">Inserisci copertina del post</label>
-            <input type="text" class="form-control" id="image" name="image">
+            <input type="text" class="form-control" id="image" name="image" value="{{$post->image}}">
           </div>
        
         <button type="submit" class="btn btn-primary">Crea</button>
