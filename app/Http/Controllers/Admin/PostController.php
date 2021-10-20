@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
@@ -28,8 +29,8 @@ class PostController extends Controller
      */
     public function create()
     {   
-
-        return view('admin.posts.create');
+        $post = new Post();
+        return view('admin.posts.create',compact('post'));
     }
 
     /**
@@ -43,7 +44,7 @@ class PostController extends Controller
         $request->validate([
             'title'=>['required','unique:posts','max:50'],
             'content'=>['required','unique:posts','max:2000'],
-            'image'=>['nullable','max:100']
+            'image'=>['nullable','unique:posts','max:100']
         ]);
 
         $data = $request->all();
@@ -84,9 +85,18 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $request->validate([
+            'title'=>['required',Rule::unique('posts')->ignore($post->id),'max:50'],
+            'content'=>['required',Rule::unique('posts')->ignore($post->id),'max:2000'],
+            'image'=>['nullable','max:100',Rule::unique('posts')->ignore($post->id)]
+        ]);
+        $data = $request->all();
+        $post->update($data);
+        
+        return redirect()->route('admin.posts.show', $post->id);
+
     }
 
     /**

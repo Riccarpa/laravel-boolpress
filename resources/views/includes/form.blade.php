@@ -8,24 +8,31 @@
           </ul>
       </div>
     @endif
-    <form action="{{route('admin.posts.store')}}" method="POST">
-    @csrf
-    <form>
+
+    @if($post->exists)
+      <form action="{{route('admin.posts.update',$post->id)}}" method="POST">
+        @method('PATCH')
+    @else
+       <form action="{{route('admin.posts.store')}}" method="POST">
+    @endif
+
+        @csrf
         <div class="form-group">
           <label for="title">Title</label>
-          <input type="text" class="form-control" id="title" name="title" value="{{$post->title}}">
+          <input type="text" class="form-control" id="title" name="title" value="{{old('title', $post->title)}}">
         </div>
         <div class="form-group">
             <label for="content">Testo del post</label>
-            <textarea name="content" class="form-control" id="content" cols="30" rows="10">{{$post->content}}</textarea>
+            <textarea name="content" class="form-control" id="content" cols="30" rows="10">{{old('content', $post->content)}}</textarea>
         </div>
         <div class="form-group">
             <label for="image">Inserisci copertina del post</label>
-            <input type="text" class="form-control" id="image" name="image" value="{{$post->image}}">
+            <input type="text" class="form-control" id="image" name="image" value="{{old('image', $post->image)}}">
           </div>
        
-        <button type="submit" class="btn btn-primary">Crea</button>
+        <button type="submit" class="btn btn-primary">{{request()->routeIs('admin.posts.edit', $post->id) ?'Modifica':'Crea'}}</button>
       </form>
     
     </form>
+
 </div>
