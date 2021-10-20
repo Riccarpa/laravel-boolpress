@@ -5,6 +5,7 @@
   @if(session('delete'))
     <div class="alert-success p-3 mb-2">Il post "{{session('delete')}}" é stato eliminato con successo</div>
   @endif
+  <h1>I miei posts</h1>
   <table class="table">
       <thead>
         <tr>
@@ -24,7 +25,7 @@
               <tr>
                   <td>{{$post->title}}</td>
                   <td>{{$post->created_at}}</td>
-                  <td class="d-flex ">
+                  <td class="d-flex justify-content-end">
                     <a class="btn btn-primary mr-2" href="{{route('admin.posts.show',$post->id)}}">Vai</a>
                     <a class="btn btn-warning mr-2" href="{{route('admin.posts.edit',$post->id)}}">Modifica</a>
                     <form method="POST" action="{{route('admin.posts.destroy',$post->id)}}">
