@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -15,7 +17,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::orderBy('created_at','desc')->paginate(10);
        return view('admin.posts.index',compact('posts'));
     }
 
@@ -25,8 +27,9 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {   
+
+        return view('admin.posts.create');
     }
 
     /**
@@ -36,8 +39,20 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        $request->validate([
+            'title'=>['required','unique:posts','max:50'],
+            'content'=>['required','unique:posts','max:2000'],
+            'image'=>['nullable','max:100']
+        ]);
+
+        $data = $request->all();
+        $post = new Post();
+        $post->fill($data);
+        $post->slug = Str::slug($post->title, '-');
+        $post->save();
+        
+        return redirect()->route('admin.posts.show',$post->id);
     }
 
     /**
