@@ -25,10 +25,17 @@
             <label for="content">Testo del post</label>
             <textarea name="content" class="form-control" id="content" cols="30" rows="10">{{old('content', $post->content)}}</textarea>
         </div>
-        <div class="form-group">
+          <div class="form-group">
             <label for="image">Inserisci copertina del post</label>
             <input type="text" class="form-control" id="image" name="image" value="{{old('image', $post->image)}}">
           </div>
+          <select class="custom-select my-2" name="category_id">
+            
+            <option>Nessuna categoria</option>
+            @foreach ($categories as $category)
+                <option @if(old('category_id',$post->category_id)== $category->id) selected @endif value="{{$category->id}}">{{$category->name}}</option>
+            @endforeach
+          </select>
        
         <button type="submit" class="btn btn-primary">{{request()->routeIs('admin.posts.edit', $post->id) ?'Modifica':'Crea'}}</button>
       </form>

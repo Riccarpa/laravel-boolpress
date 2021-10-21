@@ -11,6 +11,8 @@
         <tr>
           <th scope="col">Title</th>
           <th scope="col">Scritto il</th>
+          <th scope="col">Categoria</th>
+
           <th scope="col " class="d-flex justify-content-end">
             <a class="btn btn-success mr-1" href="{{route('admin.posts.create')}}">Nuovo post</a>
             <a class="btn btn-warning" href="{{route('admin.trashed.index')}}">Cestino</a>
@@ -25,6 +27,8 @@
               <tr>
                   <td>{{$post->title}}</td>
                   <td>{{$post->created_at}}</td>
+                  <td>@if ($post->category){{$post->category->name}} @else Nessuna categoria @endif</td>
+
                   <td class="d-flex justify-content-end">
                     <a class="btn btn-primary mr-2" href="{{route('admin.posts.show',$post->id)}}">Vai</a>
                     <a class="btn btn-warning mr-2" href="{{route('admin.posts.edit',$post->id)}}">Modifica</a>
