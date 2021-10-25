@@ -7,11 +7,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
-    protected $fillable = ['title','content','slug','image','category_id'];
+    protected $fillable = ['title','content','slug','image','category_id','user_id'];
     use SoftDeletes;
 
     public function Category()
     {
         return $this->belongsTo('App\Models\Category');
     }
+
+    public function User()
+    {
+        return $this->belongsTo('App\User');
+    }
+
+   
 }
