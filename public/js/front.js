@@ -1958,6 +1958,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["post"]
 });
@@ -38499,6 +38501,10 @@ var render = function() {
         _c("h5", { staticClass: "card-title" }, [
           _vm._v(_vm._s(_vm.post.title))
         ]),
+        _vm._v(" "),
+        _c("address", [_vm._v("Categoria: " + _vm._s(_vm.post.category.name))]),
+        _vm._v(" "),
+        _c("address", [_vm._v("Autore: " + _vm._s(_vm.post.user.name))]),
         _vm._v(" "),
         _c("p", { staticClass: "card-text" }, [
           _vm._v("\n            " + _vm._s(_vm.post.content) + "\n        ")
